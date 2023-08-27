@@ -8,10 +8,10 @@ export async function POST(req) {
 	await Blog.create({ title, description })
 	return NextResponse.json({ message: "Blog Created" }, { status: 200 })
 }
-export async function GET(req) {
+export async function GET() {
 	await connectMongoDb()
 	const blogs = await Blog.find()
-	return NextResponse.json(blogs, { status: 200 })
+	return NextResponse.json({ blogs }, { status: 200 })
 }
 export async function DELETE(req) {
 	const id = req.nextUrl.searchParams.get("id")
